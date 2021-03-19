@@ -1,9 +1,11 @@
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+    - "v*"
+
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-10.15
     steps:
       - uses: actions/setup-node@master
         with:
@@ -12,9 +14,10 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+
+
+
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
 
       - name: Build Qode binary
         run: node build.js
@@ -30,15 +33,9 @@ jobs:
             ./qode
           outPath: qode-darwin-x64-${{github.event.release.tag_name}}.tar.gz
 
+
+
       - uses: actions/upload-artifact@v1
         with:
           name: qode-darwin-x64-${{github.event.release.tag_name}}.tar.gz
           path: qode-darwin-x64-${{github.event.release.tag_name}}.tar.gz
-
-      - name: Release
-        uses: softprops/action-gh-release@master
-        with:
-          files: qode-darwin-x64-${{github.event.release.tag_name}}.tar.gz
-          tag_name: ${{ github.event.release.tag_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

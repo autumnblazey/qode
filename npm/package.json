@@ -1,6 +1,6 @@
 {
-  "name": "@nodegui/qode",
-  "version": "2.1.0",
+  "name": "@autumnblaze/qode",
+  "version": "0.1.0",
   "description": "Qode is a lightly modified fork of Node.js that merges Node's event loop with Qt's event loop. It is designed to be used together with `@nodegui/nodegui`",
   "main": "index.js",
   "files": [
@@ -16,6 +16,12 @@
     "postinstall": "node install.js"
   },
   "author": "atulanand94@gmail.com",
+  "contributors": [
+    {
+      "name": "Alexander Liu",
+      "url": "https://github.com/autumnblazey/"
+    }
+  ],
   "license": "MIT",
   "private": false,
   "dependencies": {
